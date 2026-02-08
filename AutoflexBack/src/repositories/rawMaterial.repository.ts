@@ -12,7 +12,10 @@ export class rawMaterialRepository {
   async delete(code: string) {
     await prisma.rawMaterial.delete({ where: { code } });
   }
-  async findByCode(code: string) {
+  async getByCode(code: string) {
     return prisma.rawMaterial.findUnique({ where: { code } });
+  }
+  async updateByCode(code: string, name?: string, stock?: number) {
+    return prisma.rawMaterial.update({ where: { code }, data: { name, stock } });
   }
 }

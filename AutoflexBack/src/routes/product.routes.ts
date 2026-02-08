@@ -6,5 +6,7 @@ const controller = new ProductController();
 
 router.post('/', controller.create);
 router.get('/', controller.list);
+router.get('/:code', controller.getByCode);
+router.put('/:code', controller.updateByCode);
 router.delete('/:code', controller.deleteByCode);
 export { router as productRoutes };

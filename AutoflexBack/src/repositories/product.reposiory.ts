@@ -12,7 +12,10 @@ export class ProductRepository {
   async delete(code: string) {
     await prisma.product.delete({ where: { code } });
   }
-  async findByCode(code: string) {
+  async getByCode(code: string) {
     return prisma.product.findUnique({ where: { code } });
+  }
+  async updateByCode(code: string, name?: string, price?: number) {
+    return prisma.product.update({ where: { code }, data: { name, price } });
   }
 }

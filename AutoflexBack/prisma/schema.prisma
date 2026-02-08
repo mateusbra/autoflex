@@ -10,10 +10,10 @@ datasource db {
 }
 
 model Product {
-  id        String   @id @default(uuid())
-  code      String   @unique
-  name      String
-  price     Decimal
+  id    String  @id @default(uuid())
+  code  String  @unique
+  name  String
+  price Decimal
 
   materials ProductMaterial[]
 
@@ -21,24 +21,24 @@ model Product {
 }
 
 model RawMaterial {
-  id        String   @id @default(uuid())
-  code      String   @unique
-  name      String
-  stock     Int
+  id    String @id @default(uuid())
+  code  String @unique
+  name  String
+  stock Int
 
-  products  ProductMaterial[]
+  products ProductMaterial[]
 }
 
 model ProductMaterial {
-  id            String @id @default(uuid())
+  id String @id @default(uuid())
 
   productId     String
   rawMaterialId String
 
-  quantity      Int
+  quantity Int
 
-  product       Product     @relation(fields: [productId], references: [id])
-  rawMaterial   RawMaterial @relation(fields: [rawMaterialId], references: [id])
+  product     Product     @relation(fields: [productId], references: [id])
+  rawMaterial RawMaterial @relation(fields: [rawMaterialId], references: [id])
 
   @@unique([productId, rawMaterialId])
 }

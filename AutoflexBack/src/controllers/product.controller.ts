@@ -17,4 +17,14 @@ export class ProductController {
     await service.deleteByCode(code);
     return res.status(204).send();
   }
+  async getByCode(req: Request, res: Response) {
+      const code = req.params.code as string;
+      const product = await service.getByCode(code);
+      return res.status(200).json(product);
+    }
+    async updateByCode(req: Request, res: Response) {
+      const code = req.params.code as string;
+      const updatedProduct = await service.updateByCode(code, req.body);
+      return res.status(200).json(updatedProduct);
+    }
 }

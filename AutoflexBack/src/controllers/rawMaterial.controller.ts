@@ -19,7 +19,12 @@ export class rawMaterialController {
   }
   async getByCode(req: Request, res: Response) {
     const code = req.params.code as string;
-    const rawMaterial = await service.findByCode(code);
-    return res.status(204).json(rawMaterial);
+    const rawMaterial = await service.getByCode(code);
+    return res.status(200).json(rawMaterial);
   }
+  async updateByCode(req: Request, res: Response) {
+        const code = req.params.code as string;
+        const updatedRawMaterial = await service.updateByCode(code, req.body);
+        return res.status(200).json(updatedRawMaterial);
+      }
 }
