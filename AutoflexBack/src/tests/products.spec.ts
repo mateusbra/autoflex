@@ -39,6 +39,7 @@ it('should list products', async () => {
   expect(response.body.length).toBe(2);
 
   expect(response.body[0]).toHaveProperty('code');
+  expect(response.body[0].price).toBe(100);
 });
 
 it('should delete product by code', async () => {
@@ -64,7 +65,7 @@ it('should delete product by code', async () => {
     name: 'Product One',
     price: 100,
   });
-  
+
   const response = await request(app)
     .delete('/products/P001');
 
@@ -78,5 +79,7 @@ it('should delete product by code', async () => {
 it('should return 404 when deleting non existing product', async () => {
   const response = await request(app)
     .delete('/products/NOT_FOUND');
+    
   expect(response.status).toBe(404);
+  expect(response.body).toEqual({ message: 'Product not found' });
 });

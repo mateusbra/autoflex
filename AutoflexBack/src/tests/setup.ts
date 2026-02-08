@@ -11,7 +11,7 @@ beforeAll(() => {
   })
 })
 
-afterEach(async () => {
+beforeEach(async () => {
   await prisma.product.deleteMany();
   await prisma.productMaterial.deleteMany();
   await prisma.rawMaterial.deleteMany();
