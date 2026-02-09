@@ -1,5 +1,5 @@
 import { AppError } from '../errors/AppError';
-import { rawMaterialRepository } from '../repositories/rawMaterial.repository';
+import { RawMaterialRepository } from '../repositories/rawMaterial.repository';
 
 interface CreaterawMaterialDTO {
   code: string;
@@ -7,7 +7,7 @@ interface CreaterawMaterialDTO {
   stock: number;
 }
 
-const repository = new rawMaterialRepository();
+const repository = new RawMaterialRepository();
 
 export class rawMaterialService {
   async create(data: CreaterawMaterialDTO) {

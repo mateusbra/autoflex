@@ -1,6 +1,6 @@
 import prisma from '../lib/prisma';
 
-export class rawMaterialRepository {
+export class RawMaterialRepository {
   async create(data: any) {
     return prisma.rawMaterial.create({
       data,
