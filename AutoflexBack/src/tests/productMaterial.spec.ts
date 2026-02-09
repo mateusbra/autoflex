@@ -69,7 +69,7 @@ it('should update quantity', async () => {
     });
 
     await request(app).post('/raw-materials').send({
-        code: 'R001',
+        code: 'RM001',
         name: 'Steel',
         stock: 50,
     });
@@ -78,7 +78,7 @@ it('should update quantity', async () => {
         .post('/product-materials')
         .send({
             productCode: 'P001',
-            rawMaterialCode: 'R001',
+            rawMaterialCode: 'RM001',
             quantity: 5,
         });
 
@@ -86,7 +86,7 @@ it('should update quantity', async () => {
         .put('/product-materials')
         .send({
             productCode: 'P001',
-            rawMaterialCode: 'R001',
+            rawMaterialCode: 'RM001',
             quantity: 10,
         });
 
