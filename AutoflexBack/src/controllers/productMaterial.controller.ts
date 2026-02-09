@@ -8,11 +8,12 @@ export class ProductMaterialController {
     const productMaterial = await service.create(req.body);
     return res.status(201).json(productMaterial);
   }
-  async list(req: Request, res: Response) {
-    const productMaterial = await service.list();
-    return res.status(200).json(productMaterial);
+  async getMaterials(req: Request, res: Response) {
+    const code = req.params.code as string;
+    const materials = await service.getMaterials(code);
+    return res.status(200).json(materials);
   }
-    async getMaterials(req: Request, res: Response) {
+  async update(req: Request, res: Response) {
     const code = req.params.code as string;
     const materials = await service.getMaterials(code);
     return res.status(200).json(materials);

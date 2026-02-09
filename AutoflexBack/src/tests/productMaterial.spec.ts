@@ -60,3 +60,36 @@ it('should return 404 if product not found', async () => {
     expect(response.status).toBe(404);
     expect(response.body.message).toBe('Product not found');
 });
+
+it('should update quantity', async () => {
+    await request(app).post('/products').send({
+        code: 'P001',
+        name: 'Product',
+        price: 100,
+    });
+
+    await request(app).post('/raw-materials').send({
+        code: 'R001',
+        name: 'Steel',
+        stock: 50,
+    });
+
+    await request(app)
+        .post('/product-materials')
+        .send({
+            productCode: 'P001',
+            rawMaterialCode: 'R001',
+            quantity: 5,
+        });
+
+    const response = await request(app)
+        .put('/product-materials')
+        .send({
+            productCode: 'P001',
+            rawMaterialCode: 'R001',
+            quantity: 10,
+        });
+
+    expect(response.status).toBe(200);
+    expect(response.body.quantity).toBe(10);
+});
