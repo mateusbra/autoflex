@@ -9,4 +9,7 @@ export class ProductMaterialRepository {
     async list() {
         return prisma.productMaterial.findMany();
     }
+    async getMaterials(productId: string) {
+        return prisma.productMaterial.findMany({ where: { productId }, include: { rawMaterial: true } });
+    };
 }

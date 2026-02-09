@@ -39,4 +39,18 @@ export class ProductMaterialService {
         }));
         return parsedProductMaterial;
     }
+    async getMaterials(code: string) {
+        const product = await productRepository.getByCode(code);
+        if (!product) {
+            throw new AppError('Product not found', 404);
+        }
+
+        const materials = await repository.getMaterials(product.id);
+
+        return materials.map(pm => ({
+            code: pm.rawMaterial.code,
+            name: pm.rawMaterial.name,
+            quantity: pm.quantity,
+        }));
+    }
 }

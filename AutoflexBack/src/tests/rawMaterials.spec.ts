@@ -119,11 +119,12 @@ it('should update rawMaterial by code', async () => {
     const response = await request(app)
         .put('/raw-materials/RM001')
         .send({
-            name: 'Updated rawMaterial',
+            name: 'Updated Raw Material',
             stock: 15,
         });
 
     expect(response.status).toBe(200);
-    expect(response.body.name).toBe('Updated rawMaterial');
+    expect(response.body.name).toBe('Updated Raw Material');
     expect(response.body.stock).toBe(15);
 });
+
