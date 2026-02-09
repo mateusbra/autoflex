@@ -28,7 +28,7 @@ export class rawMaterialService {
   async deleteByCode(code: string) {
     const rawMaterial = await this.getByCode(code);
     if (!rawMaterial) {
-      throw new AppError('rawMaterial not found', 404);
+      throw new AppError('Raw Material not found', 404);
     }
     await repository.delete(code);
   }
@@ -36,7 +36,7 @@ export class rawMaterialService {
   async getByCode(code: string) {
     const rawMaterial = await repository.getByCode(code);
     if (!rawMaterial) {
-      throw new AppError('rawMaterial not found', 404);
+      throw new AppError('Raw Material not found', 404);
     }
     const parsedRawMaterial = { ...rawMaterial, stock: Number(rawMaterial?.stock) };
     return parsedRawMaterial;
@@ -44,7 +44,7 @@ export class rawMaterialService {
   async updateByCode(code: string, data: { name?: string, stock?: number }) {
     const RawMaterial = await repository.getByCode(code);
     if (!RawMaterial) {
-      throw new AppError('RawMaterial not found', 404);
+      throw new AppError('Raw Material not found', 404);
     }
     const updatedRawMaterial = await repository.updateByCode(code, data?.name, data?.stock);
     const parsedRawMaterial = { ...updatedRawMaterial, price: Number(updatedRawMaterial?.stock) };

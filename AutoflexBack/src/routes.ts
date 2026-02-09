@@ -6,5 +6,5 @@ import { productMaterialRoutes } from './routes/productMaterials.routes';
 export const routes = Router();
 
 routes.use('/products', productRoutes);
-routes.use('/rawMaterials', rawMaterialRoutes);
+routes.use('/raw-materials', rawMaterialRoutes);
 routes.use('/product-materials', productMaterialRoutes)

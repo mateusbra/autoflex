@@ -12,9 +12,11 @@ beforeAll(() => {
 })
 
 beforeEach(async () => {
-  await prisma.product.deleteMany();
   await prisma.productMaterial.deleteMany();
   await prisma.rawMaterial.deleteMany();
+  await prisma.product.deleteMany();
+
+
 });
 
 afterAll(async () => {

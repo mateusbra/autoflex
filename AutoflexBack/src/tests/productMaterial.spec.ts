@@ -21,7 +21,7 @@ it('should associate raw material to product', async () => {
             rawMaterialCode: 'RM001',
             quantity: 5,
         });
-
+    console.log(response);
     expect(response.status).toBe(201);
     expect(response.body.quantity).toBe(5);
 });
