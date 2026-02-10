@@ -14,8 +14,11 @@ export class ProductMaterialController {
     return res.status(200).json(materials);
   }
   async update(req: Request, res: Response) {
-    const code = req.params.code as string;
-    const materials = await service.getMaterials(code);
+    const materials = await service.update(req.body);
     return res.status(200).json(materials);
+  }
+  async delete(req: Request, res: Response) {
+    await service.delete(req.body);
+    return res.status(204).send();
   }
 }

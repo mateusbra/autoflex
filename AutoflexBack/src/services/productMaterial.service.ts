@@ -53,4 +53,25 @@ export class ProductMaterialService {
             quantity: pm.quantity,
         }));
     }
+    async update(data: { productCode: string, rawMaterialCode: string, quantity: number }) {
+        console.log
+        const product = await productRepository.getByCode(data.productCode);
+        if (!product) throw new AppError('Product not found', 404);
+
+        const rawMaterial = await rawMaterialRepository.getByCode(data.rawMaterialCode);
+        if (!rawMaterial) throw new AppError('Raw material not found', 404);
+
+        return repository.update(product.id, rawMaterial.id, data.quantity);
+    }
+    async delete(data: {
+        productCode: string;
+        rawMaterialCode: string;
+    }) {
+        const product = await productRepository.getByCode(data.productCode);
+        if (!product) throw new AppError('Product not found', 404);
+
+        const rawMaterial = await rawMaterialRepository.getByCode(data.rawMaterialCode);
+        if (!rawMaterial) throw new AppError('Raw material not found', 404);
+        return repository.delete(product.id, rawMaterial.id);
+    }
 }

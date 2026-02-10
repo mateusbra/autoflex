@@ -93,3 +93,55 @@ it('should update quantity', async () => {
     expect(response.status).toBe(200);
     expect(response.body.quantity).toBe(10);
 });
+
+it('should return 404 if association not found', async () => {
+    const response = await request(app)
+        .put('/product-materials')
+        .send({
+            productCode: 'P001',
+            rawMaterialCode: 'RM001',
+            quantity: 10,
+        });
+
+    expect(response.status).toBe(404);
+});
+
+it('should delete product material association', async () => {
+    await request(app).post('/products').send({
+        code: 'P001',
+        name: 'Product',
+        price: 100,
+    });
+
+    await request(app).post('/raw-materials').send({
+        code: 'RM001',
+        name: 'Steel',
+        stock: 50,
+    });
+
+    await request(app).post('/product-materials').send({
+        productCode: 'P001',
+        rawMaterialCode: 'RM001',
+        quantity: 5,
+    });
+
+    const response = await request(app)
+        .delete('/product-materials')
+        .send({
+            productCode: 'P001',
+            rawMaterialCode: 'RM001',
+        });
+
+    expect(response.status).toBe(204);
+});
+
+it('should return 404 if association not found', async () => {
+    const response = await request(app)
+        .delete('/product-materials')
+        .send({
+            productCode: 'P001',
+            rawMaterialCode: 'RM001',
+        });
+
+    expect(response.status).toBe(404);
+});
